@@ -1,17 +1,16 @@
 
 package workshop;
-import java.util.Scanner;
-import java.util.Arrays;
+import java.util.*;
 public class TicTacToeGame {
-static char[] game;
+static char[] game=new char[10];
 static char comp,user;
+static Scanner sc;
    public static void main(String[] args) {
-		game=new char[10];
 		System.out.println("lets play");
 		playgame();
-		option();
+	    char p=option();
 		showBoard();
-		move() ;
+		move(p);
 	}
 		
 	public static void playgame() {
@@ -22,8 +21,8 @@ static char comp,user;
 				
 			 }
 	}
-    public static void option() {
-			Scanner sc=new Scanner(System.in);
+    public static char option() {
+			 sc=new Scanner(System.in);
 			System.out.println("enter the option");
 			char user=sc.next().charAt(0);
 			int count=0;
@@ -40,25 +39,30 @@ static char comp,user;
 			    user=sc.next().charAt(0);
 			    }
 			} 
-		  sc.close();
+		return user;
 	   }
 	  public static void showBoard() {
 		  for(int i=1;i<game.length;i=i+3) {
 			 System.out.println("|"+game[i]+"|"+game[i+1]+"|"+game[i+2]+"|"); 
 		  }
 	  }
-	  public static void move() {
-		  Scanner scan=new Scanner(System.in);
-		  while(true) {
-			System.out.println("Enter the slot to place"+user);  
-		    int slot=scan.nextInt();
+	  public static void move(char p) {
+
+		  int see=0;
+		  while(see==0) {
+			   sc=new Scanner(System.in);
+			System.out.println("Enter the slot to place" );  
+		    int slot=sc.nextInt();
 		    if(game[slot]==' ') {
-			  game[slot]=user;
+			  game[slot]=p;
+			  see++;
+			  break;
 		    }
 		    else {
 			  System.out.println("invalid choise,Enter the choice");
 		   }
-	  }
+		}
+		  showBoard();	  
     }
 }	
 
